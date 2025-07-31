@@ -1,5 +1,6 @@
 import unittest
 import os
+import datetime
 from .Copy import copy_file
 from .Delete import delete_file
 from .Count import count_files_in_folder
@@ -41,8 +42,12 @@ class TestUtils(unittest.TestCase):
     def test_rename_file(self):
         with open("test3.txt", "w") as f:
             pass
+        ctime = os.path.getctime("test3.txt")
         rename_file("test3.txt")
 
+        date_str = datetime.datetime.fromtimestamp(ctime).strftime("%Y-%m-%d")
+        new_name = f"test3_{date_str}.txt"
+        os.remove(new_name)
 
 if __name__ == "__main__":
     unittest.main()
