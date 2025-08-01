@@ -1,8 +1,10 @@
 def copy_file(source, destination):
-    with open(source, "rb") as src:
-        data = src.read()
+    file1 = open(source, "rb")
+    data = file1.read()
+    file1.close()
 
-    with open(destination, "wb") as dst:
-        dst.write(data)
-
+    file2 = open(destination, "wb")
+    file2.write(data)
+    file2.close()
     return f"Файл скопирован из {source} в {destination}"
+

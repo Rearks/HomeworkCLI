@@ -24,7 +24,7 @@ def main():
 
     # Переименование с датой
     rename_parser = subparsers.add_parser("rename")
-    rename_parser.add_argument("folder")
+    rename_parser.add_argument("filename")
 
     args = parser.parse_args()
 
@@ -38,7 +38,7 @@ def main():
         print(count_files_in_folder(args.folder))
 
     elif args.command == "rename":
-        rename_file(args.folder)
+        rename_file(args.filename)
 
 
 if __name__ == "__main__":
