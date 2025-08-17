@@ -1,8 +1,8 @@
 import argparse
-from .Copy import copy_file
-from .Delete import delete_file
-from .Count import count_files_in_folder
-from .Rename import rename_file
+from .Copy_file import copy_file
+from .Delete_file import delete_file
+from .Count_files import count_files_in_folder
+from .Rename_file import rename_file
 
 def main():
     parser = argparse.ArgumentParser(description="Простой файловый менеджер")

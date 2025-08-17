@@ -1,10 +1,10 @@
 import unittest
 import os
 import datetime
-from .Copy import copy_file
-from .Delete import delete_file
-from .Count import count_files_in_folder
-from .Rename import rename_file
+from .Copy_file import copy_file
+from .Delete_file import delete_file
+from .Count_files import count_files_in_folder
+from .Rename_file import rename_file
 
 
 class TestUtils(unittest.TestCase):
@@ -47,7 +47,11 @@ class TestUtils(unittest.TestCase):
 
         date_str = datetime.datetime.fromtimestamp(ctime).strftime("%Y-%m-%d")
         new_name = f"test3_{date_str}.txt"
+
+        self.assertTrue(os.path.exists(new_name))
+        self.assertFalse(os.path.exists("test3.txt"))
         os.remove(new_name)
+
 
 if __name__ == "__main__":
     unittest.main()
