@@ -153,7 +153,6 @@ source_box3 = InputBox(40, 420, 560, 34, "", is_folder_picker=True)
 source_label4 = Label(40, 540, "Файл для переименования")
 source_box4 = InputBox(40, 560, 560, 34, "", is_file_picker=True)
 
-
 result_text = ""
 result_text2 = ""
 result_text3 = ""
@@ -176,7 +175,6 @@ def delete_action():
         result_text2 = f"Файл удален: {os.path.basename(source_box2.text)}"
     except Exception as ex:
         result_text2 = f"Ошибка: {ex}"
-
 
 delete_btn = Button(40, 300, 150, 40, "Удалить", delete_action)
 
