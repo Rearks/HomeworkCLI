@@ -8,6 +8,7 @@ from Homework.Copy_file import copy_file
 from Homework.Delete_file import delete_file
 from Homework.Count_files import count_files_in_folder
 from Homework.Rename_file import rename_file
+import easygui
 
 pygame.init()
 
@@ -76,33 +77,22 @@ class InputBox:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
                 if self.is_folder_picker:
-                    root = tk.Tk()
-                    root.withdraw()
-                    folder = filedialog.askdirectory(title="Выберите папку")
+                    folder = easygui.diropenbox(title="Выберите папку")
                     if folder:
                         self.text = folder
                         self.txt_surface = font.render(self.text, True, BLACK)
-                    root.destroy()
                 elif self.is_file_picker:
-                    root = tk.Tk()
-                    root.withdraw()
-                    file = filedialog.askopenfilename(title="Выберите файл")
-                    if file:
-                        self.text = file
+                    file_path = easygui.fileopenbox(title="Выберите файл")
+                    if file_path:
+                        self.text = file_path
                         self.txt_surface = font.render(self.text, True, BLACK)
-                    root.destroy()
                 else:
                     self.active = True
             else:
                 self.active = False
 
-        if event.type == pygame.KEYDOWN and self.active and not (self.is_folder_picker or self.is_file_picker):
-            if event.key == pygame.K_RETURN:
-                self.active = False
-            elif event.key == pygame.K_BACKSPACE:
-                self.text = self.text[:-1]
-            else:
-                self.text += event.unicode
+        if event.type == pygame.KEYDOWN and self.active:
+            self.text += event.unicode
             self.txt_surface = font.render(self.text, True, BLACK)
 
     def draw(self, screen):
@@ -116,9 +106,7 @@ class InputBox:
         pygame.draw.rect(screen, color, self.rect, 0)
         pygame.draw.rect(screen, BLACK, self.rect, 2)
 
-
         display_text = self.text
-
         txt_surface = font.render(display_text, True, BLACK)
         screen.blit(txt_surface, (self.rect.x + 5, self.rect.y + 5))
 
@@ -311,7 +299,8 @@ while running:
     # Отрисовка tooltips
     for element in [source_box, destination_box, source_box2, source_box3, source_box4,
                     copy_btn, delete_btn, count_btn, rename_btn]:
-        element.tooltip.draw(screen)
+        if element.tooltip:  # Проверяем, что tooltip существует
+            element.tooltip.draw(screen)
 
     pygame.display.flip()
     clock.tick(60)
