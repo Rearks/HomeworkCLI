@@ -97,9 +97,9 @@ class InputBox:
 
     def draw(self, screen):
         if self.active:
-            color = (0, 200, 0)
+            color = GREEN
         elif self.hover:
-            color = (180, 180, 180)
+            color = BLUE
         else:
             color = GRAY
 
@@ -133,9 +133,9 @@ class Button:
 
     def draw(self, screen):
         if self.hover:
-            color = (180, 180, 180)
+                color = GREEN
         else:
-            color = (150, 150, 150)
+            color = GRAY
 
         pygame.draw.rect(screen, color, self.rect)
         pygame.draw.rect(screen, BLACK, self.rect, 2)
