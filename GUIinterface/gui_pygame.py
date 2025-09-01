@@ -219,6 +219,16 @@ def rename_action():
         result_text4 = f"Ошибка: {str(ex)}"
 
 
+def result_color(result_text):
+    if any(word in result_text for word in ["скопирован", "удален", "файлов", "имя"]):
+        color = GREEN
+    elif "Ошибка" in result_text:
+        color = RED
+    else:
+        color = BLACK
+    return color
+
+
 # Создание кнопок
 copy_btn = Button(40, 140, 150, 40, "Копировать", copy_action,
                   "Скопировать файл с новым именем")
@@ -280,21 +290,21 @@ while running:
     rename_btn.draw(screen)
 
     # Отображение результатов
-    color = GREEN if "скопирован" in result_text else (RED if "Ошибка" in result_text else BLACK)
+    color = result_color(result_text)
     status = font.render(result_text, True, color)
     screen.blit(status, (40, 190))
 
-    color2 = GREEN if "удален" in result_text2 else (RED if "Ошибка" in result_text2 else BLACK)
-    status2 = font.render(result_text2, True, color2)
-    screen.blit(status2, (40, 340))
+    color = result_color(result_text2)
+    status = font.render(result_text2, True, color)
+    screen.blit(status, (40, 340))
 
-    color3 = GREEN if "файлов" in result_text3 else (RED if "Ошибка" in result_text3 else BLACK)
-    status3 = font.render(result_text3, True, color3)
-    screen.blit(status3, (40, 500))
+    color = result_color(result_text3)
+    status = font.render(result_text3, True, color)
+    screen.blit(status, (40, 500))
 
-    color4 = GREEN if "имя" in result_text4 else (RED if "Ошибка" in result_text4 else BLACK)
-    status4 = font.render(result_text4, True, color4)
-    screen.blit(status4, (40, 650))
+    color = result_color(result_text4)
+    status = font.render(result_text4, True, color)
+    screen.blit(status, (40, 650))
 
     # Отрисовка tooltips
     for element in [source_box, destination_box, source_box2, source_box3, source_box4,
