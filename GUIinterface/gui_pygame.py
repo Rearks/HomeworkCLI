@@ -1,9 +1,6 @@
 import sys
 import os
 import pygame
-import tkinter as tk
-from tkinter import filedialog
-from tkinter import ttk
 from Homework.Copy_file import copy_file
 from Homework.Delete_file import delete_file
 from Homework.Count_files import count_files_in_folder
@@ -180,10 +177,13 @@ def copy_action():
         result_text = "Ошибка: Заполните оба поля"
         return
     try:
+        if not os.path.exists(source_box.text):
+            result_text = "Ошибка: Файл не найден"
+            return
         copy_file(source_box.text, destination_box.text)
         result_text = f"Файл скопирован: {os.path.basename(destination_box.text)}"
     except Exception as ex:
-        result_text = f"Ошибка: {str(ex)}"
+        result_text = f"Ошибка копирования: {str(ex)}"
 
 
 def delete_action():

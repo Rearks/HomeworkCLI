@@ -1,20 +1,16 @@
 import os
 
+def copy_file(src, dst):
+    # Проверяем, существует ли исходный файл
+    if not os.path.exists(src):
+        print("Файл отсутствует")
+        return
 
-def copy_file(source, destination):
     try:
-        file1 = open(source, "rb")
-        data = file1.read()
-        file1.close()
-
-        file2 = open(destination, "wb")
-        file2.write(data)
-        file2.close()
-        return f"Файл скопирован из {source} в {destination}"
-
-    except FileNotFoundError:
-        with open(source, "w") as f:
-            pass
-        print(f"{source} не найден, поэтому был создан пустой файл")
-        return copy_file(source, destination)
-
+        with open(src, "rb") as f_src:
+            data = f_src.read()
+        with open(dst, "wb") as f_dst:
+            f_dst.write(data)
+        print(f"Файл {src} скопирован как {dst}")
+    except Exception as e:
+        print(f"Ошибка: {e}")
