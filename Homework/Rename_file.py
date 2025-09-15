@@ -11,4 +11,5 @@ def rename_file(filename):
 
 
     os.rename(filename, new_name)
-    print(f"Файл {filename} переименован в {new_name}")
+    return new_name
+    #print(f"Файл {filename} переименован в {new_name}")

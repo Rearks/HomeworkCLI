@@ -1,36 +1,32 @@
 ### CLI-and-tests  
 Структура проекта:  
 CLI-and-tests
-+ test_utils.py      # Тесты для функций  
-+ test.txt           # Тестовый файл (можно удалить)
-+ requirements       # Требования (пустой файл)
++ test_utils.py      # Тесты для функций
++ requirements       # Требования 
 - /Homework    
   + Copy.py            # Копирование файлов  
   + Delete.py          # Удаление файлов  
   + Count.py           # Подсчёт файлов
   + Rename.py          # Переименование файлов 
   + Manager.py         # Основной CLI-интерфейс  
+- /GUIinterface
+  + gui_pygame#основной файл
   
   
 ### Использование: 
-**Создайте файл для тестирования:**  
-`<echo "test" > test.txt>`   
+**Запустите файл gui_pygame:**  
+
 **Команда которая позволяет копировать файл:**  
-python Homework.Manager.py copy путь_к_файлу путь_копии  
-  **Пример:**  
-   `<python  -m Homework.Manager copy test.txt copy_test.txt?>`  
+Введите в поле название файла в папке GUIinterface, например test.txt
+
 **Команда которая удаляет файл:**  
-python Homework.Manager.py delete путь_к_файлу  
-  **Пример:**  
-  `<python  -m Homework.Manager delete copy_test.txt>`   
+Выберите файл который нужно удалить
+
 **Команда подсчитывающая количество файлов в папке:**  
-python Homework.Manager.py count путь_к_папке  
-  **Пример:**  
-  `<python  -m Homework.Manager count Homework>`   
+Выберите папку в которой нужно подсчитать файлы 
+
 **Команда переименовывающая файл с датой:**  
-python Homework.Manager.py count путь_к_папке  
-  **Пример:**  
-  `<python  -m Homework.Manager rename test.txt>` 
+Выберите файл который нужно переименовать 
 
 
 **Запуск тестов:**  
