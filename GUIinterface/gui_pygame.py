@@ -92,7 +92,10 @@ class InputBox:
                 self.active = False
 
         if event.type == pygame.KEYDOWN and self.active:
-            self.text += event.unicode
+            if event.key == pygame.K_BACKSPACE:
+                self.text = self.text[:-1]
+            else:
+                self.text += event.unicode
             self.txt_surface = font.render(self.text, True, BLACK)
 
     def draw(self, screen):
